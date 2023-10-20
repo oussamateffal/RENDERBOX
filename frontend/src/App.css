@@ -33,11 +33,11 @@
   --razzmatazz: hsl(335, 87%, 51%);
   --platinum: hsl(0, 0%, 90%);
   --black_70: hsla(0, 0%, 0%, 0.7);
-  --rajah: hsl(29, 99%, 67%);
+  --rajah: hsl(335, 86%, 51%);
   --white: hsl(0, 0%, 100%);
 
-  --gradient-1: linear-gradient(90deg,var(--royal-blue-dark) 0,var(--ksu-purple) 51%,var(--royal-blue-dark));
-  --gradient-2: linear-gradient(90deg,var(--razzmatazz) ,var(--rajah));
+  --gradient-1: linear-gradient(90deg,var(--royal-blue-dark) 0,var(--ksu-purple) 23%,var(--razzmatazz));
+  --gradient-2: linear-gradient(90deg, #eebe68, burlywood );
 
   /**
    * typography
@@ -77,9 +77,9 @@
    */
 
   --transition-1: 0.15s ease;
-  --transition-2: 0.35s ease;
-  --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
-  --cubic-out: cubic-bezier(0.33, 0.85, 0.56, 1.02);
+  --transition-2: 0.1s ease;
+  --cubic-in: cubic-bezier(0.2, 0, 0.58, 0.28);
+  --cubic-out: cubic-bezier(0.42, 0.0, 0.58, 1);
 
   /**
    * shadow
@@ -169,7 +169,7 @@ body {
 .btn {
   background-image: var(--gradient-2);
   background-size: 200%;
-  color: var(--white);
+  color:black;
   padding: 12px 35px;
   font-size: var(--fs-8);
   font-weight: var(--fw-500);
@@ -177,7 +177,8 @@ body {
   transition: var(--transition-2);
 }
 
-.btn:is(:hover, :focus) { background-position: right; }
+.btn:is(:hover, :focus) { background-position: right;
+}
 
 .w-100 { width: 100%; }
 
@@ -353,7 +354,7 @@ body {
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position: -280px bottom, center, center;
   background-size: auto, cover, auto;
-  padding-block-start: 120px;
+
   padding-block-end: var(--section-padding);
 }
 
@@ -427,16 +428,20 @@ body {
 /*-----------------------------------*\
   #SERVICE
 \*-----------------------------------*/
-
 .service-list {
   display: grid;
   gap: 30px;
 }
 
 .service-card {
+  width: 350px;
+  height: 400px;
   padding: 30px;
   box-shadow: var(--shadow);
   border-radius: var(--radius-12);
+  transition: var(--transition-1);
+  position: relative;
+  overflow: hidden;
 }
 
 .service-card .card-icon {
@@ -449,52 +454,80 @@ body {
   display: grid;
   place-content: center;
   margin-inline: auto;
-  transition: var(--transition-1);
 }
 
-.service-card:hover .card-icon { background-color: var(--winter-sky); }
-
-.service-card .card-icon ion-icon {
+.service-card .card-icon svg {
   font-size: 5rem;
   color: var(--winter-sky);
-  --ionicon-stroke-width: 20px;
-  transition: var(--transition-1);
+}
+.service-card:hover .card-icon {
+  background-color: var(--winter-sky);
 }
 
-.service-card:hover .card-icon ion-icon { color: var(--white); }
+.service-card:hover .card-icon svg {
+  color: hsl(0, 0%, 100%);
+}
 
 .service-card .title {
   text-align: center;
-  margin-block-end: 15px;
+  margin-block-end: 10px;
 }
 
 .service-card .text {
   text-align: center;
-  margin-block-end: 20px;
+  margin-top: 0;
+  max-height: initial;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .service-card .card-btn {
-  margin-inline: auto;
-  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* spacing between arrow and text */
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 15px;
   border: 1px solid var(--winter-sky);
-  border-radius: 50%;
+  border-radius: var(--radius-12);
+  background-color: transparent;
   color: var(--winter-sky);
   transition: var(--transition-1);
+  cursor: pointer;
+  z-index: 1;
 }
 
-.service-card .card-btn:is(:hover, :focus) {
-  color: var(--white);
+.service-card .card-btn .arrow-icon {
+  font-size: 2rem; /* Increased size of the arrow */
+}
+
+/* Initially set the button's text and arrow color */
+.service-card .card-btn,
+.service-card .card-btn .arrow-icon {
+  color: var(--winter-sky);
+}
+
+/* On hover, change the button's background color and text color */
+.service-card .card-btn:hover {
   background-color: var(--winter-sky);
+  color: var(--white);
 }
 
+/* On hover, change the arrow color */
+.service-card .card-btn:hover .arrow-icon {
+  color: var(--white);
+}
 
-
-
+/* Always display the text "Portfolio" */
+.service-card .btn-text {
+  display: inline;
+}
 
 /*-----------------------------------*\
   #FEATURE
 \*-----------------------------------*/
-
 .features-list > li:first-child { margin-block-end: 30px; }
 
 .features-card {
@@ -504,6 +537,7 @@ body {
 }
 
 .features-card .icon {
+  position: relative;
   background-image: var(--gradient-1);
   background-size: 200%;
   color: var(--white);
@@ -516,6 +550,15 @@ body {
 
 .features-card .icon ion-icon { --ionicon-stroke-width: 20px; }
 
+.icon-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--white);
+  font-weight: bold;
+}
+
 .features-card .title { margin-block-end: 10px; }
 
 .features-banner { margin-block: 40px; }
@@ -526,89 +569,15 @@ body {
 }
 
 
-
-
-
-/*-----------------------------------*\
-  #BLOG
-\*-----------------------------------*/
-
-.blog { padding-block-end: 120px; }
-
-.blog-list {
-  display: grid;
-  gap: 30px;
-}
-
-.blog-card {
-  padding: 20px;
-  box-shadow: var(--shadow);
-  border-radius: var(--radius-12);
-}
-
-.blog-card .banner {
-  border-radius: var(--radius-12);
-  overflow: hidden;
-  margin-block-end: 15px;
-}
-
-.blog-card .banner img { transition: var(--transition-2); }
-
-.blog-card .banner a:is(:hover, :focus) img { transform: scale(1.1); }
-
-.blog-card .title {
-  color: var(--st-patricks-blue);
-  font-size: var(--fs-6);
-  line-height: 1.2;
-  margin-block-end: 15px;
-}
-
-.blog-card .title > a { color: inherit; }
-
-.blog-card .title > a:is(:hover, :focus) { color: var(--razzmatazz); }
-
-.blog-card .text { margin-block-end: 15px; }
-
-.blog-card .meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
+/*========== Footer ===========*/
+.footer {
   font-size: var(--fs-8);
-  color: var(--purple-navy);
-  font-weight: var(--fw-500);
-  padding-block-end: 10px;
 }
 
-.blog-card .meta ion-icon {
-  color: var(--winter-sky);
-  font-size: 22px;
-  --ionicon-stroke-width: 35px;
-}
-
-.publish-date,
-.comment {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.comment {
+.footer a {
   color: inherit;
-  margin-inline-start: auto;
+  transition: color 0.3s ease; /* Added transition for smoother color change */
 }
-
-
-
-
-
-/*-----------------------------------*\
-  #FOOTER
-\*-----------------------------------*/
-
-.footer { font-size: var(--fs-8); }
-
-.footer a { color: inherit; }
 
 .footer-top {
   background-image: url("../src/images/footer-bg.png"), var(--gradient-1);
@@ -618,7 +587,9 @@ body {
   color: var(--white);
 }
 
-.footer-brand { margin-block-end: 30px; }
+.footer-brand {
+  margin-block-end: 30px;
+}
 
 .footer-brand .logo {
   font-weight: var(--fw-700);
@@ -634,23 +605,32 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 10px;
+  gap: 15px; /* Increased gap for better spacing */
 }
 
 .footer-top .social-link {
+  display: inline-flex;  /* To center the icon */
+  justify-content: center;
+  align-items: center;
   background-color: var(--white);
   color: var(--winter-sky);
-  font-size: 18px;
+  font-size: 24px; /* Adjusted font size for better visibility */
+  width: 40px;    /* Set width and height for a square appearance */
+  height: 40px;
   padding: 8px;
-  border-radius: 50%;
+  border-radius: 50%; /* For a circular appearance */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transition effect for smoother color change */
 }
 
-.footer-top .social-link:is(:hover, :focus) {
-  background-image: var(--gradient-2);
-  color: var(--white);
+.footer-top .social-link:hover,
+.footer-top .social-link:focus {
+  background-color: var(--winter-sky); /* Inverted color */
+  color: var(--white); /* Inverted text color */
 }
 
-.footer-list:not(:last-child) { margin-block-end: 25px; }
+.footer-list:not(:last-child) {
+  margin-block-end: 25px;
+}
 
 .footer-list-title {
   font-family: var(--ff-source-sans-pro);
@@ -659,9 +639,13 @@ body {
   margin-block-end: 15px;
 }
 
-.footer-link { padding-block: 5px; }
+.footer-link {
+  padding-block: 5px;
+}
 
-:is(.footer-link, .footer-item-link):not(address):is(:hover, :focus) { text-decoration: underline; }
+:is(.footer-link, .footer-item-link):not(address):is(:hover, :focus) {
+  text-decoration: underline;
+}
 
 .footer-item {
   display: flex;
@@ -689,10 +673,135 @@ body {
   text-decoration: underline;
 }
 
-.copyright-link:is(:hover, :focus) { text-decoration: none; }
+.copyright-link:is(:hover, :focus) {
+  text-decoration: none;
+}
 
+/************** ChatCard ************/
+/* Container général */
+.chat-card-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
 
+/* Bouton principal */
+.chat-btn {
+  background-color: #EEBE68;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.chat-btn:hover {
+  transform: scale(1.05);
+}
+
+.chat-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 440px;
+  height: 440px;
+  background: #EEBE68FF;
+  border-radius: 12px;
+  z-index: 999;
+  padding: 1rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.messages-area {
+  flex: 1;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  width: 418px;
+  height: 320px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.message {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 12px;
+  max-width: 70%;
+  word-break: break-word;
+}
+
+.message.user {
+  right: 0;
+  margin-left: auto;
+}
+
+.message.support {
+  align-self: flex-start;
+}
+
+.email-input {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.email-input input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.sender-area {
+  display: flex;
+  width: 100%;
+}
+
+.send-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px;
+  background-color: aliceblue;
+}
+
+.send {
+  background-color: transparent;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.send:hover {
+  transform: scale(1.1);
+}
 
 
 /*-----------------------------------*\

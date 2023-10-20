@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaFacebookF, FaInstagram,FaPhoneAlt ,FaTwitter } from 'react-icons/fa';
+import {GrMail} from "react-icons/gr";
 
 function Footer() {
     return (
@@ -9,31 +11,31 @@ function Footer() {
 
                     <div class="footer-brand">
 
-                        <a href="#" class="logo">Desinic</a>
+                        <a href="#" class="logo">RenderBox</a>
 
-                        <p class="text">
-                            Maecenas pellentesque placerat quam, in finibus nisl tincidunt sed. Aliquam magna augue, malesuada ut
-                            feugiat eget,
-                            cursus eget felis.
+                        <p className="text">
+                            Over 10 years of web and digital marketing excellence
                         </p>
+                        <p className="text">
+                            Your success in the digital realm starts with us                        </p>
 
-                        <ul class="social-list">
+                        <ul className="social-list">
 
                             <li>
-                                <a href="#" class="social-link">
-                                    <ion-icon name="logo-facebook"></ion-icon>
+                                <a href="#" className="social-link">
+                                    <FaFacebookF />
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="social-link">
-                                    <ion-icon name="logo-instagram"></ion-icon>
+                                <a href="#" className="social-link">
+                                    <FaInstagram />
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="social-link">
-                                    <ion-icon name="logo-twitter"></ion-icon>
+                                <a href="#" className="social-link">
+                                    <FaTwitter />
                                 </a>
                             </li>
 
@@ -60,42 +62,15 @@ function Footer() {
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Team</a>
+                            <a href="#" class="footer-link">Our Values</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer-link">Blog</a>
+                            <a href="#" class="footer-link">Contact Us</a>
                         </li>
 
                     </ul>
 
-                    <ul class="footer-list">
-
-                        <li>
-                            <p class="footer-list-title">Our Services</p>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Strategy & Research</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Web Development</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Web Solution</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Digital Marketing</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">App Design</a>
-                        </li>
-
-                    </ul>
 
                     <ul class="footer-list">
 
@@ -135,6 +110,7 @@ function Footer() {
 
                             <div class="footer-item-icon">
                                 <ion-icon name="call"></ion-icon>
+                                <FaPhoneAlt/>
                             </div>
 
                             <div>
@@ -148,6 +124,7 @@ function Footer() {
 
                             <div class="footer-item-icon">
                                 <ion-icon name="mail"></ion-icon>
+                                <GrMail/>
                             </div>
 
                             <div>
@@ -157,17 +134,6 @@ function Footer() {
 
                         </li>
 
-                        <li class="footer-item">
-
-                            <div class="footer-item-icon">
-                                <ion-icon name="location"></ion-icon>
-                            </div>
-
-                            <address class="footer-item-link">
-                                Pontiac, Michigan, United States of America
-                            </address>
-
-                        </li>
 
                     </ul>
 
@@ -176,7 +142,7 @@ function Footer() {
 
             <div class="footer-bottom">
                 <p class="copyright">
-                    &copy; 2022 <a href="#" class="copyright-link">codewithsadee</a>. All Right Reserved
+                    &copy; 2023 <a href="#" class="copyright-link">coded by A&T Team</a>. All Right Reserved
                 </p>
             </div>
 

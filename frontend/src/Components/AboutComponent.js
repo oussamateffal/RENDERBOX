@@ -16,34 +16,33 @@ function AboutComponent() {
                     <h2 className="h2 section-title underline">Why Our Agency</h2>
 
                     <p className="about-text">
-                        In dictum aliquam turpis lacinia iaculis. Fusce vel malesuada magna. Nulla vel maximus risus. Donec
-                        volutpat metus
-                        lacinia risus accumsan, ac bibendum libero efficitur. Pellentesque nec nisi sit amet magna tempus
-                        hendrerit ut a odio.
+                        A premier web and digital marketing agency from Saudi Arabia with over a
+                        decade of experience. We craft visually captivating,
+                        user-centric websites and offer tailored digital marketing
+                        strategies to amplify your online presence.
                     </p>
 
                     <p className="about-text">
-                        Praesent rhoncus commodo tortor, id pulvinar nisl blandit at. Nulla facilisi. Quisque turpis ante,
-                        vehicula condimentum
-                        arcu.
+                        Whether you're a budding startup or an established name,
+                        trust RenderBox for cutting-edge solutions and unparalleled service.
                     </p>
 
                     <ul className="stats-list">
 
                         <li className="stats-card">
-                            <p className="h3 stats-title">9875</p>
+                            <p className="h3 stats-title">+600</p>
 
                             <p className="stats-text">Satisfied Clients</p>
                         </li>
 
                         <li className="stats-card">
-                            <p className="h3 stats-title">7894</p>
+                            <p className="h3 stats-title">78</p>
 
                             <p className="stats-text">Project Lunched</p>
                         </li>
 
                         <li class="stats-card">
-                            <p class="h3 stats-title">65</p>
+                            <p class="h3 stats-title">10</p>
 
                             <p class="stats-text">Years Completed</p>
                         </li>
