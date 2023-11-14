@@ -32,30 +32,34 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
-//        http.formLogin(formLogin ->
-//            formLogin
-//                    .loginPage("/login")
-//                    .failureUrl("/login-error")
-//                    .permitAll()
-//        );
-//        http.logout(logout -> logout.logoutSuccessUrl("/login").permitAll());
         MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
+
         http
-            .authorizeHttpRequests(authorizeRequests ->
-                    authorizeRequests
-                            .requestMatchers(mvcMatcherBuilder.pattern("/public/**")).permitAll()
-                            .requestMatchers(mvcMatcherBuilder.pattern("/private/**")).authenticated()
-                            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET,"/api/**")).permitAll()
-                            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,"/api/**")).authenticated()
-                            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT,"/api/**")).authenticated()
-                            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE,"/api/**")).authenticated()
-                            .anyRequest().authenticated()
-            )
-            .httpBasic(withDefaults());
-        http.userDetailsService(customUserDetailsService);
-        http.csrf(csrf -> csrf.disable());
+                .formLogin(formLogin ->
+                        formLogin
+                                .loginPage("/login")
+                                .permitAll()
+                                .failureUrl("/login-error")
+                )
+                .logout(logout -> logout.logoutSuccessUrl("/login"))
+                .authorizeHttpRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers(mvcMatcherBuilder.pattern("/public/**")).permitAll()
+                                .requestMatchers(mvcMatcherBuilder.pattern("/private/**")).authenticated()
+                                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/**")).permitAll()
+                                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/**")).authenticated()
+                                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT, "/api/**")).authenticated()
+                                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE, "/api/**")).authenticated()
+                                .requestMatchers(mvcMatcherBuilder.pattern("/login")).permitAll()
+                                .requestMatchers(mvcMatcherBuilder.pattern("/dashboard/**")).authenticated()
+                                .anyRequest().permitAll()
+                )
+                .userDetailsService(customUserDetailsService)
+                .csrf(csrf -> csrf.disable());
+
         return http.build();
     }
+
 
 }
 
