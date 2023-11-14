@@ -1,9 +1,6 @@
 package com.renderbox.renderboxporoject.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +19,6 @@ public class Service {
 
     private String serviceName;
 
+    @Lob
+    private String serviceDescription;
 }

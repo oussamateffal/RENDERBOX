@@ -28,16 +28,23 @@
 
     <ul class="navbar-nav flex-row align-items-center ms-auto">
       <!-- Place this tag where you want the button to render. -->
-      <li class="nav-item lh-1 me-3">
-        <a
-                class="github-button"
-                href="https://github.com/themeselection/sneat-html-admin-template-free"
-                data-icon="octicon-star"
-                data-size="large"
-                data-show-count="true"
-                aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-        >Star</a
-        >
+      <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+          <i th:if="${theme == 'dark'}" class="bx bx-sm bx-moon"></i>
+          <i th:if="${theme == 'light'}" class="bx bx-sm bx-sun"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
+          <li>
+            <a class="dropdown-item" th:href="@{/dashboard/toggle-theme(themeName='light')}" data-theme="light">
+              <span class="align-middle"><i class="bx bx-sun me-2"></i>Light</span>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" th:href="@{/dashboard/toggle-theme(themeName='dark')}" data-theme="dark">
+              <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
+            </a>
+          </li>
+        </ul>
       </li>
 
       <!-- User -->
@@ -91,7 +98,7 @@
             <div class="dropdown-divider"></div>
           </li>
           <li>
-            <a class="dropdown-item" href="auth-login-basic.html">
+            <a class="dropdown-item" th:href="@{/logout}">
               <i class="bx bx-power-off me-2"></i>
               <span class="align-middle">Log Out</span>
             </a>
