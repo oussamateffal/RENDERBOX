@@ -29,8 +29,10 @@
   <link rel="stylesheet" type="text/css" href="../static/assets/vendor/fonts/boxicons.css" th:href="@{/assets/vendor/fonts/boxicons.css}" />
 
   <!-- Core CSS -->
-  <link rel="stylesheet" type="text/css" href="../static/assets/vendor/css/core.css" class="template-customizer-core-css" th:href="@{/assets/vendor/css/core.css}" />
-  <link rel="stylesheet" type="text/css" href="../static/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" th:href="@{/assets/vendor/css/theme-default.css}" />
+  <link th:if="${theme == 'light'}" rel="stylesheet" href="../static/assets/vendor/css/core.css" class="template-customizer-core-css" th:href="@{/assets/vendor/css/core.css}" />
+  <link th:if="${theme == 'dark'}" rel="stylesheet" href="../static/assets/vendor/css/core.css" class="template-customizer-core-css" th:href="@{/assets/vendor/css/core-dark.css}" />
+  <link th:if="${theme == 'light'}" rel="stylesheet" href="../static/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" th:href="@{/assets/vendor/css/theme-default.css}" />
+  <link th:if="${theme == 'dark'}" rel="stylesheet" href="../static/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" th:href="@{/assets/vendor/css/theme-default-dark.css}" />
   <link rel="stylesheet" type="text/css" href="../static/assets/css/demo.css" th:href="@{/assets/css/demo.css}" />
 
   <!-- Vendors CSS -->

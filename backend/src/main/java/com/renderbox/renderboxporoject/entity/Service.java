@@ -20,5 +20,6 @@ public class Service {
     private String serviceName;
 
     @Lob
+    @Column(length = 512)
     private String serviceDescription;
 }

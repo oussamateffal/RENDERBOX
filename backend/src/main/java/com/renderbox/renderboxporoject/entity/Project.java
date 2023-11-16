@@ -23,6 +23,7 @@ public class Project {
     private String projectName;
 
     @Lob
+    @Column(length = 512)
     private String description;
 
     @ManyToOne
@@ -32,4 +33,11 @@ public class Project {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private List<Photo> photos;
 
+    @Transient
+    public Photo getFirstPhoto() {
+        if(photos == null || photos.isEmpty()) {
+            return null;
+        }
+        return photos.get(0);
+    }
 }
