@@ -48,30 +48,34 @@
 
                                 <div class="col-12">
                                     <div class="row">
-                                        <label class="form-label" for="serviceName">Service Name</label>
-                                        <div class="input-group input-group-merge mb-3">
-                                            <span id="serviceName2" class="input-group-text"
-                                            ><i class="bx bx-card"></i
-                                            ></span>
-                                            <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter Service Name"
-                                                    id="serviceName"
-                                                    aria-describedby="serviceName"
-                                                    th:value="${service.serviceName}"
-                                                    name="serviceName"
-                                            />
+                                        <div class="col-md-12 col-lg-12">
+                                            <label class="form-label" for="serviceName">Service Name</label>
+                                            <div class="input-group input-group-merge mb-3">
+                                                <span id="serviceName2" class="input-group-text"
+                                                ><i class="bx bx-card"></i
+                                                ></span>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="Enter Service Name"
+                                                        id="serviceName"
+                                                        aria-describedby="serviceName"
+                                                        th:value="${service.serviceName}"
+                                                        name="serviceName"
+                                                />
+                                            </div>
+                                            <span class="text-danger" th:errors="${service.serviceName}"></span>
                                         </div>
-                                        <span class="text-danger" th:errors="${service.serviceName}"></span>
                                     </div>
 
                                     <div class="row">
-                                        <label class="form-label" for="serviceDesc">Service Description</label>
-                                        <div class="input-group input-group-merge mb-3">
-                                            <textarea class="form-control" name="serviceDescription" id="serviceDesc" rows="5" th:text="${service.serviceDescription}">Enter Service Description</textarea>
+                                        <div class="col-md-12 col-lg-12">
+                                            <label class="form-label" for="serviceDesc">Service Description</label>
+                                            <div class="input-group input-group-merge mb-3">
+                                                <textarea class="form-control" name="serviceDescription" id="serviceDesc" rows="5" th:text="${service.serviceDescription}">Enter Service Description</textarea>
+                                            </div>
+                                            <span class="text-danger" th:errors="${service.serviceDescription}"></span>
                                         </div>
-                                        <span class="text-danger" th:errors="${service.serviceDescription}"></span>
                                     </div>
                                 </div>
 
