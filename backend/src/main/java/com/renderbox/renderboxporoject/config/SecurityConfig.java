@@ -1,6 +1,7 @@
 package com.renderbox.renderboxporoject.config;
 
 import com.renderbox.renderboxporoject.service.CustomUserDetailsService;
+import com.renderbox.renderboxporoject.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,9 +10,11 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
@@ -21,13 +24,18 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfig {
 
+//    @Autowired
+//    private CustomUserDetailsService customUserDetailsService;
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private UserDetailsService userDetailsService;
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
+//
+//    @Autowired
+//    public SecurityConfig(JwtRequestFilter jwtRequestFilter) {
+//        this.jwtRequestFilter = jwtRequestFilter;
+//    }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
 
     @Bean
@@ -52,15 +60,16 @@ public class SecurityConfig {
                                 .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE, "/api/**")).authenticated()
                                 .requestMatchers(mvcMatcherBuilder.pattern("/login")).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern("/dashboard/**")).authenticated()
+                                .requestMatchers(mvcMatcherBuilder.pattern("/api/authenticate/**")).permitAll()
                                 .anyRequest().permitAll()
                 )
-                .userDetailsService(customUserDetailsService)
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+//                .userDetailsService(customUserDetailsService)
+                .userDetailsService(userDetailsService)
                 .csrf(csrf -> csrf.disable());
 
         return http.build();
     }
-
-
 }
 
 

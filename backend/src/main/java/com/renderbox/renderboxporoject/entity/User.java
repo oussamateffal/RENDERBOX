@@ -1,21 +1,32 @@
 package com.renderbox.renderboxporoject.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
-    private String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
+    private String email;
     private String password;
-    private List<String> roles;
+    private boolean blocked;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+
+    @Column(name="reset_password_token")
+    private String resetPasswordToken;
 
 }
 
