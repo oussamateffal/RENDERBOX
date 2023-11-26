@@ -63,6 +63,7 @@ public class SecurityConfig {
                                 .requestMatchers(mvcMatcherBuilder.pattern("/login")).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern("/dashboard/**")).authenticated()
                                 .requestMatchers(mvcMatcherBuilder.pattern("/api/authenticate/**")).permitAll()
+                                .requestMatchers(mvcMatcherBuilder.pattern("/swagger-ui/**")).permitAll()
                                 .anyRequest().permitAll()
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
