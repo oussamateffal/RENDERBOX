@@ -20,10 +20,10 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public User addNewUser(String email, String password, String confirmPassword, String role) {
+    public User addNewUser(String email, String password, String confirmPassword, UserRole role) {
         User user = userRepository.findByEmail(email);
         if(user != null) throw new RuntimeException("This email already exist");
-        if(!password.equals(confirmPassword)) throw new RuntimeException("Passwords not match exist");
+        if(role != UserRole.ROLE_USER && !password.equals(confirmPassword)) throw new RuntimeException("Passwords not match exist");
         User createdUser = user.builder()
                 .email(email)
                 .password(passwordEncoder.encode(password))
@@ -71,5 +71,20 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(newPassword));
         user.setResetPasswordToken(null);
         userRepository.save(user);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.getById(id);
+    }
+
+    @Override
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User getByChatToken(String chatToken) {
+        return userRepository.findByChatToken(chatToken);
     }
 }

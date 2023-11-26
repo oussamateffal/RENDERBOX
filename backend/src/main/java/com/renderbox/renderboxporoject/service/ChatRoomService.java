@@ -14,15 +14,19 @@ public class ChatRoomService {
     private ChatRoomRepository chatRoomRepository;
 
     public ChatRoom findOrCreateChatRoom(User user) {
-        ChatRoom chatRoom = chatRoomRepository.findByUser(user);
+        ChatRoom chatRoom = chatRoomRepository.findByUserId(user.getId());
 
         if (chatRoom == null) {
             chatRoom = new ChatRoom();
-            chatRoom.setUser(user);
+            chatRoom.getUsers().add(user);
             chatRoom.setMessages(new ArrayList<>());
             chatRoomRepository.save(chatRoom);
         }
 
         return chatRoom;
+    }
+
+    public ChatRoom getChatRoomById(Long id) {
+        return chatRoomRepository.getById(id);
     }
 }

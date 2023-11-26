@@ -10,11 +10,11 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendVerificationEmail(String to, String token) {
+    public void sendVerificationEmail(String to, String link) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject("Email address verification");
-        message.setText("Cliquez sur le lien suivant pour vérifier votre adresse e-mail: http://votre-site.com/verify?token=" + token);
+        message.setText("Click on the following link to verify your email address: " + link);
         javaMailSender.send(message);
     }
 }

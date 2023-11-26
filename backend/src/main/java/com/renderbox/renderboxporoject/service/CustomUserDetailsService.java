@@ -24,8 +24,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     static {
         // Passwords should be encoded using a PasswordEncoder in a real application
-        users.add(new User(1L, "john.doe@example.com", "password", false, UserRole.ROLE_USER, null));
-        users.add(new User(2L, "admin@example.com", "adminpassword", false, UserRole.ROLE_ADMIN, null));
+        users.add(new User(1L, "john.doe@example.com", "password", false, UserRole.ROLE_USER, null, null, null));
+        users.add(new User(2L, "admin@example.com", "adminpassword", false, UserRole.ROLE_ADMIN, null, null, null));
     }
 
     @Override

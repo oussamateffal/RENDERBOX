@@ -54,6 +54,8 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers(mvcMatcherBuilder.pattern("/public/**")).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern("/private/**")).authenticated()
+                                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/chat/sendToken")).permitAll()
+                                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/messages/sendWithChatToken")).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/**")).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/**")).authenticated()
                                 .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT, "/api/**")).authenticated()
