@@ -10,4 +10,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public User findByEmail(String email);
     public List<User> getByRole(String role);
     public User findByResetPasswordToken(String token);
+    public User findByChatToken(String token);
 }

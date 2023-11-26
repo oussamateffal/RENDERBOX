@@ -3,7 +3,8 @@ package com.renderbox.renderboxporoject.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -28,5 +29,10 @@ public class User {
     @Column(name="reset_password_token")
     private String resetPasswordToken;
 
+    @Column(name="chat_token")
+    private String chatToken;
+
+    @ManyToMany(mappedBy = "users")
+    private Set<ChatRoom> chatRooms = new HashSet<>();
 }
 
