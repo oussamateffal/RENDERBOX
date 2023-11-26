@@ -7,6 +7,8 @@ import com.renderbox.renderboxporoject.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,6 +23,7 @@ public class MessageServiceImpl implements MessageService {
         message.setUser(user);
         message.setChatRoom(chatRoom);
         message.setContent(content);
+        message.setDate(LocalDateTime.now());
 
         return messageRepository.save(message);
     }

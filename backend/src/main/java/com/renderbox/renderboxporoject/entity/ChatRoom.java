@@ -1,5 +1,7 @@
 package com.renderbox.renderboxporoject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +30,7 @@ public class ChatRoom {
             name = "user_chatroom",
             joinColumns = @JoinColumn(name = "chatroom_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<User> users = new HashSet<>();
 
 }

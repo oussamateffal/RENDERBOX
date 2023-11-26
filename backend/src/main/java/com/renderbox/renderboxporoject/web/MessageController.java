@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -58,7 +60,6 @@ public class MessageController {
     @GetMapping("/get")
     public ResponseEntity<List<Message>> getMessage(@RequestParam Long chatRoomId) {
         ChatRoom chatRoom = chatRoomService.getChatRoomById(chatRoomId);
-
         List<Message> messages = messageService.getMessagesByChatRoom(chatRoom);
         return ResponseEntity.ok(messages);
     }

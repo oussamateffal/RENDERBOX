@@ -4,6 +4,7 @@ import com.renderbox.renderboxporoject.entity.ChatRoom;
 import com.renderbox.renderboxporoject.entity.User;
 import com.renderbox.renderboxporoject.entity.UserRole;
 import com.renderbox.renderboxporoject.repository.ChatRoomRepository;
+import com.renderbox.renderboxporoject.service.ChatRoomService;
 import com.renderbox.renderboxporoject.service.EmailService;
 import com.renderbox.renderboxporoject.service.UserService;
 import com.renderbox.renderboxporoject.utils.Utility;
@@ -26,6 +27,8 @@ public class ChatController {
     private EmailService emailService;
     @Autowired
     private ChatRoomRepository chatRoomRepository;
+    @Autowired
+    private ChatRoomService chatRoomService;
 
     @PostMapping("/sendToken")
     public ResponseEntity<String> sendVerificationToken(@RequestParam String email, HttpServletRequest request) {
@@ -45,22 +48,16 @@ public class ChatController {
     }
 
     @GetMapping("/verify_token")
-    public ResponseEntity<String> verifyToken(@RequestParam(name = "token") String token) {
+    public ChatRoom verifyToken(@RequestParam(name = "token") String token) {
         User user = userService.getByChatToken(token);
         if(user == null || !user.getChatToken().equals(token)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token invalid.");
+            return null;
         }
-//        user.setChatToken("");
-//        userService.save(user);
-        if((user.getChatRooms() == null || user.getChatRooms().isEmpty()) && user.getRole().equals(UserRole.ROLE_USER)) {
-            ChatRoom chatRoom = new ChatRoom();
-            chatRoom.setUsers(new HashSet<>());
-            chatRoom.getUsers().add(user);
-            chatRoom = chatRoomRepository.save(chatRoom);
-            user.setChatRooms(new HashSet<>());
-            user.getChatRooms().add(chatRoom);
-            userService.save(user);
+        if(!user.isBlocked() && user.getRole().equals(UserRole.ROLE_USER)) {
+            ChatRoom chatRoom = chatRoomService.findOrCreateChatRoom(user);
+            return chatRoom;
+        } else {
+            return null;
         }
-        return ResponseEntity.ok("Token valid.");
     }
 }
